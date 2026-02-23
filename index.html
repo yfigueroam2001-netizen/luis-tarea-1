@@ -1,164 +1,142 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Panel IA Universitarios</title>
+<meta charset="UTF-8">
+<title>Pobreza en México 2008-2018 | CONEVAL</title>
 
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f4f6f9;
-      color: #333;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f2f4f8;
+}
 
-    header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
+header {
+  background-color: #003366;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
 
-    nav {
-      background-color: #ffffff;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+nav {
+  background: white;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+}
 
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #2a5298;
-      transition: 0.3s;
-    }
+nav a {
+  margin: 0 20px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #003366;
+}
 
-    nav a:hover {
-      color: #1e3c72;
-      border-bottom: 2px solid #1e3c72;
-      padding-bottom: 3px;
-    }
+section {
+  padding: 50px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
 
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  margin-bottom: 40px;
+}
 
-    .chart-container {
-      background-color: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      margin-bottom: 50px;
-    }
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #2a5298;
-    }
+html {
+  scroll-behavior: smooth;
+}
+</style>
 
-    footer {
-      background-color: #1e3c72;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
+<script>
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawCharts);
 
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
+function drawCharts() {
 
-  <script>
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawCharts);
+  // Gráfico 1: Pobreza %
+  var data1 = google.visualization.arrayToDataTable([
+    ['Indicador', '2008', '2018'],
+    ['Pobreza', 44.4, 41.9],
+    ['Pobreza extrema', 11.0, 7.4]
+  ]);
 
-    function drawCharts() {
+  var chart1 = new google.visualization.ColumnChart(document.getElementById('chart1'));
+  chart1.draw(data1, { title: 'Porcentaje de Pobreza en México (2008 vs 2018)' });
 
-      var data1 = google.visualization.arrayToDataTable([
-        ['Frecuencia', 'Estudiantes'],
-        ['Diario', 35],
-        ['3-5 veces por semana', 30],
-        ['1-2 veces por semana', 20],
-        ['Rara vez', 10],
-        ['Nunca', 5]
-      ]);
+  // Gráfico 2: Personas en millones
+  var data2 = google.visualization.arrayToDataTable([
+    ['Indicador', '2008', '2018'],
+    ['Pobreza (millones)', 49.5, 52.4],
+    ['Pobreza extrema (millones)', 12.3, 9.3]
+  ]);
 
-      var chart1 = new google.visualization.ColumnChart(document.getElementById('chart1'));
-      chart1.draw(data1, { title: 'Frecuencia de Uso de IA' });
+  var chart2 = new google.visualization.BarChart(document.getElementById('chart2'));
+  chart2.draw(data2, { title: 'Número de Personas en Pobreza (millones)' });
 
-      var data2 = google.visualization.arrayToDataTable([
-        ['Uso', 'Porcentaje'],
-        ['Tareas escolares', 45],
-        ['Investigación', 25],
-        ['Programación', 15],
-        ['Edición de texto', 10],
-        ['Otros', 5]
-      ]);
+  // Gráfico 3: Carencias sociales
+  var data3 = google.visualization.arrayToDataTable([
+    ['Carencia', '2008', '2018'],
+    ['Rezago educativo', 21.9, 16.9],
+    ['Acceso a salud', 38.4, 16.2],
+    ['Seguridad social', 65.0, 57.3],
+    ['Calidad vivienda', 17.7, 11.1],
+    ['Servicios básicos', 22.9, 19.8],
+    ['Alimentación', 21.7, 20.4]
+  ]);
 
-      var chart2 = new google.visualization.PieChart(document.getElementById('chart2'));
-      chart2.draw(data2, { title: 'Principales Usos de IA' });
+  var chart3 = new google.visualization.LineChart(document.getElementById('chart3'));
+  chart3.draw(data3, { title: 'Evolución de Carencias Sociales (%)' });
 
-      var data3 = google.visualization.arrayToDataTable([
-        ['Opinión', 'Porcentaje'],
-        ['Mejora mucho', 40],
-        ['Mejora ligeramente', 35],
-        ['No hay diferencia', 15],
-        ['Afecta negativamente', 10]
-      ]);
-
-      var chart3 = new google.visualization.BarChart(document.getElementById('chart3'));
-      chart3.draw(data3, { title: 'Impacto Académico Percibido' });
-    }
-  </script>
+}
+</script>
 </head>
 
 <body>
 
 <header>
-  <h1>Panel de Visualización</h1>
-  <p>Uso de Inteligencia Artificial en Estudiantes Universitarios</p>
+<h1>Evolución de la Pobreza en México (2008–2018)</h1>
+<p>Fuente: CONEVAL</p>
 </header>
 
 <nav>
-  <a href="#frecuencia">Frecuencia de Uso</a>
-  <a href="#usos">Principales Usos</a>
-  <a href="#impacto">Impacto Académico</a>
+<a href="#pobreza">Porcentaje de Pobreza</a>
+<a href="#personas">Número de Personas (millones)</a>
+<a href="#carencias">Carencias Sociales</a>
 </nav>
 
-<section id="frecuencia">
-  <div class="chart-container">
-    <h2>Frecuencia de Uso</h2>
-    <div id="chart1" style="width:100%; height:400px;"></div>
-  </div>
+<section id="pobreza">
+<div class="card">
+<h2>Porcentaje de Pobreza</h2>
+<div id="chart1" style="width:100%; height:400px;"></div>
+</div>
 </section>
 
-<section id="usos">
-  <div class="chart-container">
-    <h2>Principales Usos</h2>
-    <div id="chart2" style="width:100%; height:400px;"></div>
-  </div>
+<section id="personas">
+<div class="card">
+<h2>Número de Personas (millones)</h2>
+<div id="chart2" style="width:100%; height:400px;"></div>
+</div>
 </section>
 
-<section id="impacto">
-  <div class="chart-container">
-    <h2>Impacto Académico</h2>
-    <div id="chart3" style="width:100%; height:400px;"></div>
-  </div>
+<section id="carencias">
+<div class="card">
+<h2>Carencias Sociales</h2>
+<div id="chart3" style="width:100%; height:500px;"></div>
+</div>
 </section>
-
-<footer>
-  Actividad de Visualización de Datos - Google Charts
-</footer>
 
 </body>
 </html>
